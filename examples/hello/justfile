@@ -1,0 +1,2 @@
+build:
+    componentize-py -w http-plugin componentize app -o plugin.wasm

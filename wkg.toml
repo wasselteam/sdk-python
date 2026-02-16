@@ -1,0 +1,4 @@
+# TODO: do not depend on wassel repository being around
+
+[overrides]
+"wassel:foundation" = { path = "../wassel/wit" }
