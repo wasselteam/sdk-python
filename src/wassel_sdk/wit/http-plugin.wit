@@ -1,5 +1,5 @@
 package wassel:sdk;
 
-world http-sdk-plugin {
+world http-plugin {
     include wassel:foundation/http-plugin;
 }
