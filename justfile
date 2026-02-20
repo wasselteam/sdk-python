@@ -12,5 +12,3 @@ bindings:
         bindings \
         ./build/bindings
     cp -r ./build/bindings/wassel_sdk/wit/* ./src/wassel_sdk/wit/
-
-wit:

@@ -1,4 +1,4 @@
-id = "python-jinja2"
+id = "python-hello"
 name = "Hello Python Plugin"
 version = "0.0.0"
 endpoint = "/python/hello/"

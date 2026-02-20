@@ -8,8 +8,8 @@ from abc import abstractmethod
 import weakref
 
 from componentize_py_types import Result, Ok, Err, Some
-from ..imports import udp
 from ..imports import network
+from ..imports import udp
 
 
 def create_udp_socket(address_family: network.IpAddressFamily) -> udp.UdpSocket:
