@@ -2,3 +2,6 @@
 
 [overrides]
 "wassel:foundation" = { path = "../wassel/wit" }
+"wassel:http-client" = { path = "../wassel/crates/interface-http-client/wit" }
+"wassel:postgres" = { path = "../wassel/crates/interface-postgres/wit" }
+"wassel:redis" = { path = "../wassel/crates/interface-redis/wit" }

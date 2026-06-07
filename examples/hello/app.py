@@ -1,4 +1,5 @@
 from typing import override
+
 from wassel_sdk import http
 
 

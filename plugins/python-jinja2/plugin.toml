@@ -1,0 +1,8 @@
+id = "python-jinja2"
+name = "Jinja2 Python Plugin"
+version = "0.0.0"
+endpoint = "/python/jinja2/"
+component = "index.wasm"
+
+[build]
+cmd = "componentize-py -w http-plugin componentize app"

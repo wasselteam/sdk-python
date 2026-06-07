@@ -1,0 +1,8 @@
+[stack]
+plugins = [
+    "./examples/hello/",
+    "./examples/http-client/",
+    "./examples/jinja2/",
+    "./examples/postgres/",
+    "./examples/redis/",
+]

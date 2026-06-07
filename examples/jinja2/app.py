@@ -1,8 +1,9 @@
 import pathlib
 from typing import override
-from wassel_sdk import http
 
-from jinja2 import Environment, DictLoader, select_autoescape
+from jinja2 import DictLoader, Environment, select_autoescape
+
+from wassel_sdk import http
 
 
 def read_entire_file(path: str) -> str:
@@ -27,4 +28,6 @@ class HttpHandler(http.HttpHandler):
         _ = request
         template = env.get_template("index.html")
         html = template.render().encode("utf-8")
-        return http.Response(body=html)
+        return http.Response(
+            body=html, headers={"content-type": b"text/html; charset=utf-8"}
+        )

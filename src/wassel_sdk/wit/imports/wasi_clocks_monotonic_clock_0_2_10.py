@@ -19,7 +19,20 @@ from abc import abstractmethod
 import weakref
 
 from componentize_py_types import Result, Ok, Err, Some
+from ..imports import wasi_io_poll_0_2_10
 
 
-class WasselSdkWit(Protocol):
-    pass
+def now() -> int:
+    raise NotImplementedError
+
+
+def resolution() -> int:
+    raise NotImplementedError
+
+
+def subscribe_instant(when: int) -> wasi_io_poll_0_2_10.Pollable:
+    raise NotImplementedError
+
+
+def subscribe_duration(when: int) -> wasi_io_poll_0_2_10.Pollable:
+    raise NotImplementedError

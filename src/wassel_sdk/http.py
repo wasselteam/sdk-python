@@ -1,10 +1,11 @@
 from wassel_sdk.wit import exports
-from wassel_sdk.wit.imports.wasi_http_types import *
-from wassel_sdk.wit.imports.streams import (
+from wassel_sdk.wit.imports.wasi_http_types_0_2_10 import *
+from wassel_sdk.wit.imports.wasi_io_streams_0_2_10 import (
     Err,
     StreamError_Closed,
     StreamError_LastOperationFailed,
 )
+from wassel_sdk.wit.imports import wassel_http_client_http_client as client
 
 from typing import override
 from abc import abstractmethod
@@ -24,6 +25,7 @@ PATCH = "PATCH"
 
 @dataclass
 class Request:
+    path: str
     method: str
     headers: dict[str, bytes]
     body: bytes | None
@@ -44,11 +46,12 @@ class HttpHandler(exports.HttpHandler):
         res = None
         try:
             # TODO: convert method to string
+            path = request.path_with_query() or "/"
             method = request.method()
-            headers = {key: value for key, value in request.headers().entries()}
+            headers = dict(request.headers().entries())
             body = read_body(request)
 
-            req = Request(method=method, headers=headers, body=body)
+            req = Request(path=path, method=method, headers=headers, body=body)
             res = self.handle(req)
 
         except Exception as e:
@@ -58,7 +61,7 @@ class HttpHandler(exports.HttpHandler):
 
         # TODO: res.headers
         # TODO: allow body to be stream and str
-        write_response(response_out, res.status, res.body)
+        write_response(response_out, res.status, res.body, res.headers)
 
     @abstractmethod
     def handle(self, request: Request) -> Response:
@@ -72,11 +75,15 @@ def write_response(
     out: http.ResponseOutparam,
     status: int | None = None,
     body_bytes: bytes | None = None,
+    headers: dict[str, bytes] | None = None,
 ) -> None:
     if status is None:
         status = 200
 
-    res = OutgoingResponse(Fields.from_list([]))
+    if headers is None:
+        headers = {}
+
+    res = OutgoingResponse(Fields.from_list(list(headers.items())))
     res.set_status_code(status)
 
     if body_bytes is not None:
@@ -101,7 +108,7 @@ def read_body(request: IncomingRequest) -> bytes | None:
         with body.stream() as stream:
             while True:
                 b = stream.blocking_read(STREAM_READ_COUNT)
-                buf = buf.join(b)
+                buf = buf + b
     except Err as e:
         if isinstance(e.value, StreamError_Closed):
             return buf

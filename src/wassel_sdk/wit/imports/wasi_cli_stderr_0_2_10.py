@@ -19,7 +19,8 @@ from abc import abstractmethod
 import weakref
 
 from componentize_py_types import Result, Ok, Err, Some
+from ..imports import wasi_io_streams_0_2_10
 
 
-class WasselSdkWit(Protocol):
-    pass
+def get_stderr() -> wasi_io_streams_0_2_10.OutputStream:
+    raise NotImplementedError

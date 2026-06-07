@@ -19,7 +19,11 @@ from abc import abstractmethod
 import weakref
 
 from componentize_py_types import Result, Ok, Err, Some
+from ..imports import wasi_filesystem_types_0_2_10
 
 
-class WasselSdkWit(Protocol):
-    pass
+def get_directories() -> List[Tuple[wasi_filesystem_types_0_2_10.Descriptor, str]]:
+    """
+    Return the set of preopened directories, and their paths.
+    """
+    raise NotImplementedError

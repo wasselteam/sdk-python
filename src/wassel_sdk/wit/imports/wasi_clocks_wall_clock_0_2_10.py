@@ -21,5 +21,15 @@ import weakref
 from componentize_py_types import Result, Ok, Err, Some
 
 
-class WasselSdkWit(Protocol):
-    pass
+@dataclass
+class Datetime:
+    seconds: int
+    nanoseconds: int
+
+
+def now() -> Datetime:
+    raise NotImplementedError
+
+
+def resolution() -> Datetime:
+    raise NotImplementedError

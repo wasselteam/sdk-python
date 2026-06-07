@@ -19,7 +19,15 @@ from abc import abstractmethod
 import weakref
 
 from componentize_py_types import Result, Ok, Err, Some
+from ..imports import wasi_http_types_0_2_10
 
 
-class WasselSdkWit(Protocol):
-    pass
+def send(
+    url: str, req: wasi_http_types_0_2_10.OutgoingRequest
+) -> wasi_http_types_0_2_10.IncomingResponse:
+    """
+    Send outbound HTTP request and get incoming response
+
+    Raises: `componentize_py_types.Err(wassel_sdk.wit.imports.wasi_http_types_0_2_10.ErrorCode)`
+    """
+    raise NotImplementedError

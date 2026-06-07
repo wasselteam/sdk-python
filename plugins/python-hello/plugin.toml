@@ -1,0 +1,8 @@
+id = "python-hello"
+name = "Hello Python Plugin"
+version = "0.0.0"
+endpoint = "/python/hello/"
+component = "index.wasm"
+
+[build]
+cmd = "componentize-py -w http-plugin componentize app"

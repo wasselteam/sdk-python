@@ -1,2 +1,6 @@
 wit_directory = "wit"
 bindings = "wit"
+full_names = true
+
+[export_interface_names]
+"wassel:foundation/http-handler" = "http-handler"
